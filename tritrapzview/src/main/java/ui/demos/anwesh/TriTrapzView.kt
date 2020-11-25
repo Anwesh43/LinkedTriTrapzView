@@ -221,4 +221,13 @@ class TriTrapzView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TriTrapzView {
+            val view : TriTrapzView = TriTrapzView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
