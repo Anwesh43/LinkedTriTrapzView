@@ -196,4 +196,27 @@ class TriTrapzView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriTrapzView) {
+
+        private val animator : Animator = Animator(view)
+        private val tt : TriTrapz = TriTrapz(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tt.draw(canvas, paint)
+            animator.animate {
+                tt.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tt.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
